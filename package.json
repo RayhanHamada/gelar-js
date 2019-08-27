@@ -1,0 +1,24 @@
+{
+  "name": "gelar-js",
+  "version": "1.0.0",
+  "description": "A package for saving and making your project structure",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Project",
+    "Structure",
+    "gelar"
+  ],
+  "author": "Mocchapine",
+  "license": "MIT",
+  "bin": {
+    "gelar": "cli.js"
+  },
+  "dependencies": {
+    "lodash": "^4.17.15",
+    "meow": "^5.0.0",
+    "yaml": "^1.6.0"
+  }
+}
