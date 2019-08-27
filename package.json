@@ -11,7 +11,13 @@
     "Structure",
     "gelar"
   ],
-  "author": "Mocchapine",
+  "author": {
+    "email": "rayhanhamada1999@gmail.com",
+    "name": "Mocchapine"
+  },
+  "repository": {
+    "url": "https://github.com/RayhanHamada/gelar-js"
+  },
   "license": "MIT",
   "bin": {
     "gelar": "cli.js"
