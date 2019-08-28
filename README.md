@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/RayhanHamada/gelar-js.svg?branch=master)](https://travis-ci.org/RayhanHamada/gelar-js)
 # gelar-js
 A package for saving and making your project structure in YAML file format. 
 ## Install
@@ -13,13 +14,11 @@ In command line, you could type the following commands :
 
 Initialize gelar, and creating gelar.yaml in os.homedir() for saving your project structure. use this command if you accidentally delete gelar.yaml
 <br/>
-<br/>
 ```
 gelar 
 ```
 
 Create your project structure in current directory
-<br/>
 <br/>
 ```
 gelar use <your_favorite_project_structure>
@@ -27,9 +26,14 @@ gelar use <your_favorite_project_structure>
 
 Reset the gelar.yaml to brand new
 <br/>
-<br/>
 ```
 gelar clean
+```
+
+Show list of available structures
+<br/>
+```
+gelar list
 ```
 
 Type "gelar" with whatever argument to show helps
