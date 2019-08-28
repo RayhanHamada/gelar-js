@@ -40,6 +40,7 @@ const cli = meow(
     
     Commands
       use <your project structure name>         use one of your own project structure inside gelar.yaml file
+      list                                      show list of available structure
       help                                      show help 
 
   Examples
@@ -95,17 +96,32 @@ else if (cli.input[0] === "use") {
     // checking if your Project Structure name exists.
     if (!_.keys(toParse).includes(cli.input[1])) {
       console.log(
-        `Structure is not exists, are you already make it ? try check it on ${path.join(
-          os.homedir(),
-          "gelar.yaml"
-        )}`
+        `Structure is not exists, are you already make it ? here's the list of available structure names : \n`
       );
+
+      const file = fs.readFileSync(
+        path.join(os.homedir(), "gelar.yaml"),
+        "utf8"
+      );
+      const toParse = yaml.parse(file);
+      const keyz = _.keys(toParse);
+      keyz.forEach((k, idx) => console.log(`${idx + 1}. ${k}`));
     } else {
       // create directories/files in current directory
       createStructure(toParse[cli.input[1]], ".");
       console.log(`File structure is created !`);
     }
   }
+}
+// show list of available project structure names
+else if (cli.input[0] === "list") {
+  const file = fs.readFileSync(path.join(os.homedir(), "gelar.yaml"), "utf8");
+  const toParse = yaml.parse(file);
+  const keyz = _.keys(toParse);
+
+  console.log(`List of available structure names : \n`);
+
+  keyz.forEach((k, idx) => console.log(`${idx + 1}. ${k}`));
 } else {
   console.log(cli.help);
 }

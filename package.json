@@ -1,6 +1,6 @@
 {
   "name": "gelar-js",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A package for saving and making your project structure",
   "main": "index.js",
   "scripts": {
