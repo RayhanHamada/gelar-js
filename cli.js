@@ -11,7 +11,7 @@ const yaml = require("yaml");
 let createStructure = (toParse, currdir) => {
   _.keys(toParse).forEach(key => {
     let cdir = `${currdir}${key.match(/[0-9][0-9]*/) ? `` : `/${key}`}`;
-    // console.log(key);
+    console.log(cdir);
     if (!_.isString(toParse[key])) {
       if (toParse[key] === null) {
         // create empty directory below
@@ -40,7 +40,8 @@ const cli = meow(
     
     Commands
       use <your project structure name>         use one of your own project structure inside gelar.yaml file
-      list                                      show list of available structure
+      list                                      show list of available structures
+      show <structure name>                     show your project structure in yaml representation
       help                                      show help 
 
   Examples
@@ -57,7 +58,12 @@ const cli = meow(
   }
 );
 
-const config = `
+const initial = `
+# config object, don't change it plz.
+gelar_config:
+  - lastUse: ""
+# you can edit everything below
+
 example1:
   - src:
       - pages:
@@ -74,7 +80,7 @@ example1:
 
 // create gelar.yaml in os.homedir() if not exists
 if (!fs.existsSync(path.join(os.homedir(), "gelar.yaml"))) {
-  fs.writeFileSync(path.join(os.homedir(), "gelar.yaml"), config);
+  fs.writeFileSync(path.join(os.homedir(), "gelar.yaml"), initial);
   console.log(
     `First time ? gelar.yaml doesn't exists in ${os.homedir()}, so i created it for you :)`
   );
@@ -82,7 +88,7 @@ if (!fs.existsSync(path.join(os.homedir(), "gelar.yaml"))) {
 
 // reset gelar.yaml
 if (cli.input[0] === "clean" || cli.input[0] === "c") {
-  fs.writeFileSync(path.join(os.homedir(), "gelar.yaml"), config);
+  fs.writeFileSync(path.join(os.homedir(), "gelar.yaml"), initial);
   console.log("gelar.yaml cleaned");
 }
 
@@ -92,7 +98,7 @@ else if (cli.input[0] === "use") {
   const file = fs.readFileSync(path.join(os.homedir(), "gelar.yaml"), "utf8");
   const toParse = yaml.parse(file);
 
-  if (cli.input[1] !== null || cli.input[1] !== "") {
+  if (cli.input[1] !== null && cli.input[1] !== "") {
     // checking if your Project Structure name exists.
     if (!_.keys(toParse).includes(cli.input[1])) {
       console.log(
@@ -111,8 +117,11 @@ else if (cli.input[0] === "use") {
       createStructure(toParse[cli.input[1]], ".");
       console.log(`File structure is created !`);
     }
+  } else {
+    console.log(cli.help);
   }
 }
+
 // show list of available project structure names
 else if (cli.input[0] === "list") {
   const file = fs.readFileSync(path.join(os.homedir(), "gelar.yaml"), "utf8");
@@ -121,7 +130,19 @@ else if (cli.input[0] === "list") {
 
   console.log(`List of available structure names : \n`);
 
-  keyz.forEach((k, idx) => console.log(`${idx + 1}. ${k}`));
+  keyz.splice(1).forEach((k, idx) => console.log(`${idx + 1}. ${k}`));
+}
+
+// show structure by name
+else if (cli.input[0] === "show") {
+  if (cli.input[1] !== null || cli.input[1] !== "") {
+    const file = fs.readFileSync(path.join(os.homedir(), "gelar.yaml"), "utf8");
+    const toParse = yaml.parse(file);
+
+    console.log(yaml.stringify(toParse[cli.input[1]]));
+  } else {
+    console.log(cli.help);
+  }
 } else {
   console.log(cli.help);
 }

@@ -36,6 +36,12 @@ Show list of available structures
 gelar list
 ```
 
+Show your project structure in yaml representation
+<br/>
+```
+gelar show <your structure name>
+```
+
 Type "gelar" with whatever argument to show helps
 
 ## Make your own project structure

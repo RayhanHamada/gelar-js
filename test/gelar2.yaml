@@ -1,10 +1,10 @@
 example1:
-  - src:
-      - pages:
+  - src/:
+      - pages/:
           - Homepage.js
-      - route: null
+      - route/
       - App.js
       - style.css
       - index.js
-  - dependencies: null
+  - dependencies/
   - index.html

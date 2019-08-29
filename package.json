@@ -1,6 +1,6 @@
 {
   "name": "gelar-js",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "A package for saving and making your project structure",
   "main": "index.js",
   "scripts": {
@@ -23,6 +23,7 @@
     "gelar": "cli.js"
   },
   "dependencies": {
+    "@types/node": "^12.7.2",
     "lodash": "^4.17.15",
     "meow": "^5.0.0",
     "yaml": "^1.6.0"
