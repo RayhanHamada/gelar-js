@@ -2,5 +2,5 @@ language: node_js
 
 deploy:
   provider: npm
-  api_key: "18c32f7d-54e1-43ee-9727-c524ecfe6701"
+  api_key: "7c75fe62-461e-42bd-afc1-b9feeb99daad"
   email: "rayhanhamada1999@gmail.com"
